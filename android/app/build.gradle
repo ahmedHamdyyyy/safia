@@ -1,0 +1,54 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.safia.client"
+    
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId = "com.safia.client"
+        minSdk = 26
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    signingConfigs {
+        release {
+            // Make sure to set the path to your keystore file, password, alias, and key password
+            storeFile file(project.rootDir.path + "/app/safiaa-keystore.jks")
+            storePassword "safai123"
+            keyAlias "safia"
+            keyPassword "safai123"
+        }
+    }
+
+    buildTypes {
+        release {
+            // Use the signing config defined above
+            signingConfig signingConfigs.release
+            shrinkResources false
+            minifyEnabled false
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
